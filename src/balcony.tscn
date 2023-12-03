@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://SAT/ไม่มีชื่อ 93_20230102222315.png" type="Texture" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MobileControler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/Para/Layer_0010_1.png" type="Texture" id=4]
+[ext_resource path="res://SAT/background2.png" type="Texture" id=5]
+[ext_resource path="res://exitbal.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 44 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MobileControler" parent="." instance=ExtResource( 3 )]
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 508, 301.25 )
+scale = Vector2( 1.11207, 0.753468 )
+texture = ExtResource( 4 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 507.241, 320 )
+scale = Vector2( 4.02532, 4.25 )
+texture = ExtResource( 5 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 939.833, 349.156 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 843.833, 317.156 )
+scale = Vector2( 0.28099, 0.28099 )
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 40, 384 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 800, -35 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 40, 384 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1016, -32 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://asset/PS/PS1.png" type="Texture" id=1]
+[ext_resource path="res://asset/PS/PS/Button - PS Triangle 1.png" type="Texture" id=2]
+[ext_resource path="res://asset/PS/PS/Button - PS Triangle White 1.png" type="Texture" id=3]
+[ext_resource path="res://asset/PS/PS2.png" type="Texture" id=4]
+
+[node name="MobileControler" type="CanvasLayer"]
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2( 168, 464 )
+scale = Vector2( 0.217, 0.217 )
+normal = ExtResource( 2 )
+pressed = ExtResource( 1 )
+action = "move_right"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2( 32, 464 )
+scale = Vector2( 0.216667, 0.216667 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 4 )
+action = "move_left"

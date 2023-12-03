@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SAT/banquet.png" type="Texture" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SAT/wai.png" type="Texture" id=4]
+[ext_resource path="res://SAT/ไม่มีชื่อ 22_20221130232222.png" type="Texture" id=5]
+[ext_resource path="res://SAT/ไม่มีชื่อ 23_20221130234341.png" type="Texture" id=6]
+[ext_resource path="res://SAT/ไม่มีชื่อ 90_20230102200101.png" type="Texture" id=7]
+[ext_resource path="res://SAT/ไม่มีชื่อ 24_20221201000155.png" type="Texture" id=8]
+[ext_resource path="res://SAT/mana.png" type="Texture" id=9]
+[ext_resource path="res://exitban.gd" type="Script" id=10]
+[ext_resource path="res://SAT/tipss.png" type="Texture" id=11]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 44 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 8 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 512, 272 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 440, 360 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 5 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 472, 360 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 6 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 498, 362 )
+scale = Vector2( 0.1375, 0.1375 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 472, 376 )
+scale = Vector2( 0.211111, 0.211111 )
+texture = ExtResource( 7 )
+
+[node name="block" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -160 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 387, 363 )
+scale = Vector2( 0.213889, 0.213889 )
+texture = ExtResource( 4 )
+
+[node name="Sprite7" type="Sprite" parent="."]
+position = Vector2( 600, 368 )
+scale = Vector2( 0.213889, 0.213889 )
+texture = ExtResource( 9 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 64, 376 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 40, 384 )
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 952, -20 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 32, 376 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -31.1569, -8.93857 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="."]
+position = Vector2( 296, 286 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]

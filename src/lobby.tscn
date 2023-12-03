@@ -1,0 +1,116 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://asset/bg/bg.png" type="Texture" id=1]
+[ext_resource path="res://block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/bg/ei.png" type="Texture" id=4]
+[ext_resource path="res://SAT/checkin.png" type="Texture" id=5]
+[ext_resource path="res://areafix.gd" type="Script" id=6]
+[ext_resource path="res://SAT/spritesheet.png" type="Texture" id=7]
+[ext_resource path="res://bellhop.gd" type="Script" id=8]
+[ext_resource path="res://asset/yok/achievement.png" type="Texture" id=9]
+[ext_resource path="res://finishlobby.gd" type="Script" id=10]
+[ext_resource path="res://SAT/security.png" type="Texture" id=11]
+[ext_resource path="res://SAT/ไม่มีชื่อ 98_20230103213418.png" type="Texture" id=12]
+[ext_resource path="res://SAT/elevator.png" type="Texture" id=13]
+[ext_resource path="res://SAT/doorman.png" type="Texture" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 29 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 27.758, 44.4185 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 48, 8 )
+
+[node name="lobby" type="Node2D"]
+scale = Vector2( 1.00872, 0.990577 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 511.541, 306.892 )
+scale = Vector2( 0.991359, 1.02172 )
+texture = ExtResource( 1 )
+
+[node name="Ei" type="Sprite" parent="."]
+position = Vector2( 214.134, 371.501 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="block" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -153.446 )
+scale = Vector2( 1, 1.01 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 90.2133, 383.615 )
+
+[node name="ไม่มีชื่อ9820230103213418" type="Sprite" parent="."]
+position = Vector2( 967.563, 379.577 )
+scale = Vector2( 0.145357, 0.145357 )
+texture = ExtResource( 12 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 39.6542, 383.615 )
+script = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Area2D"]
+position = Vector2( 283.777, -1.73363 )
+scale = Vector2( 0.0971106, 0.0971106 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Area2D"]
+
+[node name="Btn" type="TouchScreenButton" parent="Area2D/CanvasLayer"]
+visible = false
+position = Vector2( 360, 424 )
+scale = Vector2( 0.2, 0.186667 )
+normal = ExtResource( 5 )
+action = "checkin"
+
+[node name="please" type="Sprite" parent="Area2D/CanvasLayer"]
+visible = false
+position = Vector2( 516, 264 )
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 174.134, 11.7288 )
+shape = SubResource( 1 )
+
+[node name="Elevator" type="Sprite" parent="."]
+position = Vector2( 952.693, 379.577 )
+scale = Vector2( 0.283045, 0.283045 )
+texture = ExtResource( 13 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 995.324, 375.539 )
+scale = Vector2( 0.999999, 1 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 40, 384 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -31.1569, -8.93857 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 848.6, 379.577 )
+scale = Vector2( 0.167387, 0.167387 )
+texture = ExtResource( 11 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 47.585, 383.615 )
+scale = Vector2( 0.16188, 0.16188 )
+texture = ExtResource( 14 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
+[connection signal="pressed" from="Area2D/CanvasLayer/Btn" to="Area2D" method="_on_Btn_pressed"]
+[connection signal="pressed" from="Area2D/CanvasLayer/Btn" to="Area2D/Sprite2" method="_on_Btn_pressed"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_Area2D2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_Area2D2_body_exited"]

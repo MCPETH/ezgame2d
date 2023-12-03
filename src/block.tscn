@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://asset/first.png" type="Texture" id=1]
+[ext_resource path="res://asset/firsts.png" type="Texture" id=2]
+[ext_resource path="res://MobileControler.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 88 )
+
+[node name="block" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 232, 288 )
+scale = Vector2( 32, 1.00495 )
+texture = ExtResource( 1 )
+offset = Vector2( 8.75, 294.621 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 232, -723.448 )
+scale = Vector2( 32, 4.75 )
+texture = ExtResource( 2 )
+offset = Vector2( 8.75, 294.621 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 512, 664 )
+shape = SubResource( 1 )
+
+[node name="MobileControler" parent="." instance=ExtResource( 3 )]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asset/Para/Layer_0007_Lights.png" type="Texture" id=3]
+[ext_resource path="res://asset/Para/Layer_0005_5.png" type="Texture" id=4]
+[ext_resource path="res://asset/Para/Layer_0011_0.png" type="Texture" id=5]
+[ext_resource path="res://asset/Para/Layer_0006_4.png" type="Texture" id=6]
+[ext_resource path="res://asset/yok/hotel.png" type="Texture" id=7]
+[ext_resource path="res://enterhotel.gd" type="Script" id=8]
+[ext_resource path="res://SAT/Untitled-1.png" type="Texture" id=9]
+[ext_resource path="res://SAT/t.png" type="Texture" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 29 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 48, 8 )
+
+[node name="main" type="Node2D"]
+position = Vector2( -24, 16 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2( 1, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 632, 112 )
+scale = Vector2( 5.28685, 1.68675 )
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 464, 20.5 )
+motion_scale = Vector2( 0.5, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2( -80, 80 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 424, 80 )
+motion_scale = Vector2( 0.8, 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 0, 20 )
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 296, 40 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 3 )
+
+[node name="block" parent="." instance=ExtResource( 1 )]
+position = Vector2( -8, -152 )
+scale = Vector2( 11.1186, 0.996102 )
+
+[node name="hotel" type="Sprite" parent="."]
+position = Vector2( 936, 328 )
+scale = Vector2( 0.266667, 0.266667 )
+texture = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 264, 328 )
+scale = Vector2( 0.646667, 0.646667 )
+texture = ExtResource( 9 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 39.9998, 384 )
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 895, 3 )
+shape = SubResource( 1 )
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 384 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1500
+limit_bottom = 5000
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+offset_v = -1.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 40, 384 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -48, -16 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 448, 352 )
+scale = Vector2( 1, 0.993333 )
+texture = ExtResource( 10 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
